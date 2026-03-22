@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . .
 
 RUN chmod +x ./gradlew
-RUN ./gradlew build -x test --no-daemon -Dorg.gradle.jvmargs="-Xmx300m"
+RUN ./gradlew build -x test --no-daemon --max-workers=1 -Dorg.gradle.jvmargs="-Xmx192m -XX:MaxMetaspaceSize=128m -XX:+UseSerialGC"
 
 RUN cp build/libs/*.jar app.jar
 
