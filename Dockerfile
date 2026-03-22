@@ -6,8 +6,7 @@ WORKDIR /app
 COPY . .
 
 RUN chmod +x ./gradlew
-RUN ./gradlew build -x test
-
+RUN ./gradlew build -x test --no-daemon -Dorg.gradle.jvmargs="-Xmx300m"
 
 RUN cp build/libs/*.jar app.jar
 
